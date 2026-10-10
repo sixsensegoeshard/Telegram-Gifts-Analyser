@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101215">
+  <meta name="description" content="Gift Signal — аналитика Telegram Gifts, портфель и ценовые уведомления.">
+  <title>Gift Signal · Telegram Gifts</title>
+  <link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/terminal.css">
+  <script src="https://telegram.org/js/telegram-web-app.js" defer></script>
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-action="skip">К содержимому</a>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Панель приложения">
+      <a class="brand" href="#overview"><img src="/assets/logo.svg" width="35" height="35" alt=""><span>GIFT<span class="brand-light">SIGNAL</span><small>TELEGRAM GIFTS ANALYTICS</small></span></a>
+      <div class="nav-label">ТВОЙ РАДАР</div>
+      <nav class="desktop-nav" aria-label="Главная навигация"></nav>
+      <div class="sidebar-bottom"><div class="sidebar-note"><span class="pulse-dot"></span><span>Найти вход.<br>Проверить выход.</span></div><button class="sidebar-status" data-action="status">Источники данных <span>↗</span></button><div class="sidebar-version">Gift Signal <span>v2.0</span></div></div>
+    </aside>
+    <div class="workspace">
+      <header class="topbar"><div class="mobile-brand"><img src="/assets/logo.svg" width="27" height="27" alt=""><b>GIFT SIGNAL</b></div><div class="breadcrumb"><span>Рабочее пространство</span><span>/</span><b id="breadcrumb-title">Обзор</b></div><div class="topbar-actions"><button class="status-chip" id="source-chip" data-action="status">Загрузка…</button><button class="icon-button" data-action="alerts" aria-label="Ценовые уведомления" id="bell-button"></button><button class="avatar" data-action="status" aria-label="Профиль" id="avatar">А</button></div></header>
+      <main id="main" tabindex="-1"><div class="loading-state"><span class="loader"></span><p>Подключаем твой радар…</p></div></main>
+      <footer class="page-footer"><span>GIFT SIGNAL</span><span>Данные для решений. Не обещания доходности.</span></footer>
+    </div>
+  </div>
+  <nav class="mobile-nav" aria-label="Главная навигация"></nav>
+  <dialog id="modal"><div id="modal-content"></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

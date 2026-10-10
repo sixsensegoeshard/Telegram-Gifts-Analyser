@@ -1,0 +1,15 @@
+{
+  "name": "gift-signal",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Telegram Gifts analytics Mini App",
+  "engines": { "node": ">=22.16.0" },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server.js",
+    "bot": "node --env-file-if-exists=.env bot.js",
+    "telegram:local": "node --env-file-if-exists=.env scripts/telegram-local.js",
+    "test": "node --test tests/*.test.js",
+    "check": "node scripts/check.js"
+  }
+}

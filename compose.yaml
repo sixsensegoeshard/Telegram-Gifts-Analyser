@@ -1,0 +1,51 @@
+services:
+  app:
+    build: ..
+    restart: unless-stopped
+    env_file: ../.env
+    environment:
+      APP_MODE: live
+      HOST: 0.0.0.0
+      PORT: 3000
+      DB_PATH: /app/data/gifts.sqlite
+    volumes:
+      - gift_data:/app/data
+    networks: [internal]
+    logging:
+      driver: json-file
+      options: {max-size: "10m", max-file: "3"}
+  bot:
+    build: ..
+    command: ["node", "bot.js"]
+    restart: unless-stopped
+    env_file: ../.env
+    environment:
+      APP_MODE: live
+      DB_PATH: /app/data/gifts.sqlite
+    volumes:
+      - gift_data:/app/data
+    depends_on:
+      app: {condition: service_healthy}
+    networks: [internal]
+    logging:
+      driver: json-file
+      options: {max-size: "10m", max-file: "3"}
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    environment:
+      DOMAIN: ${DOMAIN:?Set DOMAIN in .env}
+    ports: ["80:80", "443:443", "443:443/udp"]
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      app: {condition: service_healthy}
+    networks: [internal]
+networks:
+  internal:
+volumes:
+  gift_data:
+  caddy_data:
+  caddy_config:
